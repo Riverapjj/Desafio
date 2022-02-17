@@ -31,8 +31,6 @@
                             $productos = simplexml_load_file('productos.xml');
 
                             foreach ($productos as $producto) {
-
-
                         
                         ?>
                             <tbody>
