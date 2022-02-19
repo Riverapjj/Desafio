@@ -1,18 +1,20 @@
-<!-- Modal -->
-<div class="modal fade" id="agregar" tabindex="-1" aria-labelledby="agregar" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
+<?php
+
+    $productos = simplexml_load_file('productos.xml');
+
+    $producto = $productos->addChild('producto');
+
+    $producto->addChild('codigo', $_POST['codigo']);
+    $producto->addChild('nombre', $_POST['nombre']);
+    $producto->addChild('descripcion', $_POST['descripcion']);
+    $producto->addChild('img', $_POST['img']);
+    $producto->addChild('categoria', $_POST['categoria']);
+    $producto->addChild('precio', $_POST['precio']);
+    $producto->addChild('existencias', $_POST['existencia']);
+
+    file_put_contents('productos.xml', $productos->asXML());
+
+    header('location:privado.php');
+?>
+
+?>
