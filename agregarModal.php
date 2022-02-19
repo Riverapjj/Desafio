@@ -7,7 +7,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form action="agregar.php" method="post" class="row g-2">
+        <form action="agregar.php" method="POST" class="row g-2">
           <div class="col-md-6">
             <div class="form-floating">
               <input type="text" class="form-control" id="codigo" name="codigo" required />

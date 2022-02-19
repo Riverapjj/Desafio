@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap-utilities.css">
     <title>Dashboard</title>
 </head>
 <body>
@@ -29,6 +30,7 @@
 
                         <?php
                             $productos = simplexml_load_file('productos.xml');
+                            $index = 0;
 
                             foreach ($productos as $producto) {
                         ?>
@@ -54,13 +56,16 @@
                         <?php
                                 include('editarModal.php');
                                 include('borrarModal.php');
+                                
+                                $index++;
                             }
                         ?>
                     </table>
                 </div>
             </div>
         </div>
-    </div>    
-<script src="js/bootstrap.min.js"></script>
+    </div>
+<script src="js/bootstrap.bundle.min.js"></script>
+<script src="js/bootstrap.min.js"></script>    
 </body>
 </html>

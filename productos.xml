@@ -144,4 +144,4 @@
         <precio>5.50</precio>
         <existencias>500</existencias>
     </producto>
-<producto><codigo>PROD000017</codigo><nombre>test</nombre><descripcion>asdasda</descripcion><img>&#xC1;rbol de causas - Isla Gaviota-Page-2.drawio.png</img><categoria>2</categoria><precio>0.03</precio><existencias>15</existencias></producto></productos>
+</productos>
