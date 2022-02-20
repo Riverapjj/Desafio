@@ -145,4 +145,4 @@
         <existencias>500</existencias>
     </producto>                          
 
-</productos>
+<producto><codigo>PROD00017</codigo><nombre>TEST</nombre><descripcion>zzzzz</descripcion><img>&#xC1;rbol de problemas - Isla Gaviota.drawio.png</img><categoria>Promocional</categoria><precio>111</precio><existencias>4</existencias></producto></productos>

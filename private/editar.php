@@ -3,8 +3,7 @@
     $indexXML = 0;
     $indexProducto = $_POST['index'];
 
-    $productos = simplexml_load_file('productos.xml');
-    echo "<script>alert($indexProducto)</script>";
+    $productos = simplexml_load_file('../productos.xml');
     
     foreach ($productos->producto as $producto) {
 

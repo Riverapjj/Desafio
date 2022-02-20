@@ -2,7 +2,7 @@
 
     $codigo = $_GET['cod'];
 
-    $productos = simplexml_load_file('productos.xml');
+    $productos = simplexml_load_file('../productos.xml');
     $i = 0;
 
     foreach ($productos->producto as $producto) {
@@ -14,7 +14,7 @@
     }
 
     unset($productos->producto[$i]);
-    file_put_contents('productos.xml', $productos->asXML());
+    file_put_contents('../productos.xml', $productos->asXML());
 
     header('location:privado.php');
 

@@ -9,7 +9,10 @@
     <title>Dashboard</title>
 </head>
 <body>
-    <?php include('agregarModal.php');?>
+    <?php 
+        include('agregarModal.php');
+        require('validaciones.php');
+    ?>
 
     <div class="container">
         <h1 class="page-header text-center">Textiles</h1>
@@ -29,7 +32,7 @@
                         </thead>
 
                         <?php
-                            $productos = simplexml_load_file('productos.xml');
+                            $productos = simplexml_load_file('../productos.xml');
                             $index = 0;
 
                             foreach ($productos->producto as $producto) {
@@ -71,5 +74,21 @@
 <script src="js/bootstrap.bundle.min.js"></script>
 <script src="js/bootstrap.min.js"></script>  
 <script src="js/validationForm.js"></script>  
-</body>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+</body><?php
+    if (isset($_GET['existe'])) {
+
+?>
+<script>
+    Swal.fire({
+        icon: 'success',
+        title: 'Your work has been saved',
+        showConfirmButton: true,
+        timer: 1500
+    })
+</script>
+<?php
+    }
+?>
 </html>

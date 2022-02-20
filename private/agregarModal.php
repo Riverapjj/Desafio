@@ -10,7 +10,7 @@
         <form action="agregar.php" method="POST" class="row needs-validation" novalidate>
           <div class="col-md-12">
             <label for="codigo" class="form-label">Código</label>
-            <input type="text" class="form-control" id="codigo" name="codigo" required />
+            <input type="text" class="form-control" maxlength="9" id="codigo" name="codigo" required />
             <div class="invalid-feedback">Ingrese un código</div>
           </div>
           <div class="col-md-12">
