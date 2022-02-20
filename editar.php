@@ -4,7 +4,8 @@
     $indexProducto = $_POST['index'];
 
     $productos = simplexml_load_file('productos.xml');
-
+    echo "<script>alert($indexProducto)</script>";
+    
     foreach ($productos->producto as $producto) {
 
         if ($indexProducto == $indexXML) {

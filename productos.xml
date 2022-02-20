@@ -143,5 +143,5 @@
         <categoria>Promocional</categoria>
         <precio>5.50</precio>
         <existencias>500</existencias>
-    </producto>
-</productos>
+    </producto>                          
+<producto><codigo>PROD000017</codigo><nombre>test1</nombre><descripcion>33333</descripcion><img/><categoria>Promocional</categoria><precio>0.03</precio><existencias>4</existencias></producto></productos>

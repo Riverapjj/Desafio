@@ -32,7 +32,9 @@
                             $productos = simplexml_load_file('productos.xml');
                             $index = 0;
 
-                            foreach ($productos as $producto) {
+                            foreach ($productos->producto as $producto) {
+                                
+                                
                         ?>
                             <tbody>
                                 <tr>
@@ -47,6 +49,7 @@
                                     <td>$<?= $producto->precio;?></td>
                                     <td><?= $producto->existencias;?></td>
                                     <td class="d-flex p-4">
+                                        <a href=""></a>
                                         <button type="button" class="btn btn-success m-3" data-bs-toggle="modal" data-bs-target="#editar_<?= $producto->codigo;?>">Editar</button>
                                         <button type="button" class="btn btn-danger m-3" data-bs-toggle="modal" data-bs-target="#borrar_<?= $producto->codigo;?>">Borrar</button>
                                     </td>
@@ -66,6 +69,7 @@
         </div>
     </div>
 <script src="js/bootstrap.bundle.min.js"></script>
-<script src="js/bootstrap.min.js"></script>    
+<script src="js/bootstrap.min.js"></script>  
+<script src="js/validationForm.js"></script>  
 </body>
 </html>

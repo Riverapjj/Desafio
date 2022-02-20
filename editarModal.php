@@ -7,11 +7,9 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form action="editar.php" method="POST" class="row g-2">
-          <div class="col-md-6">
-            <div class="form-floating">
-              <input hidden type="text" class="form-control" id="index" name="index" value="<?=$index;?>"/>
-            </div>
+        <form action="editar.php" method="post" class="row g-2">
+          <div>
+            <input type="text" hidden value="<?=$index?>" name="index" id="index">
           </div>
           <div class="col-md-6">
             <div class="form-floating">
@@ -39,7 +37,7 @@
           </div>
           <div class="col-md-12">
             <div class="form-floating input-group">
-              <input type="file" class="form-control form-control-sm" id="img" name="img" value="<?=$producto->img;?>" required />
+              <input type="file" class="form-control form-control-sm" id="img" name="img" value="<?=$producto->img;?>" />
               <label for="img">Imagen</label>
             </div>
           </div>
@@ -53,17 +51,15 @@
             <div class="form-floating">
               <select name="categoria" id="categoria" class="form-select">
                 <?php
-                  
+
                   if ((string) $producto->categoria == "Textil")
                   {
-                    $categoria = $producto->categoria;
-                    echo "<option value='$categoria'>Textil</option>  
+                    echo "<option value='$producto->categoria'>Textil</option>  
                           <option value='Promocional'>Promocional</option>";
                   }
                   else {
 
-                    $categoria = $producto->categoria;
-                    echo "<option value='$categoria'>Promocional</option>  
+                    echo "<option value='$producto->categoria'>Promocional</option>  
                           <option value='Textil'>Textil</option>";
                   }
                 ?>
@@ -74,7 +70,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-        <button type="submit" class="btn btn-primary">Guardar</button>
+        <button type="submit" class="btn btn-success">Confirmar</button>
 
       </form>
       </div>

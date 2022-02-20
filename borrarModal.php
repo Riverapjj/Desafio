@@ -8,7 +8,8 @@
       <div class="modal-body">
         <p class="text-center">¿Estás seguro de borrar este producto?</p>
         <h2 class="text-center"><?=$producto->nombre?></h2>
-      </div>
+      
+      <input type="text" value="<?=$index;?>">
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
         <a href="borrar.php?cod=<?=$producto->codigo;?>" class="btn btn-danger">Confirmar</a>
