@@ -10,8 +10,8 @@
 </head>
 <body>
     <?php 
+        require('errores.php');
         include('agregarModal.php');
-        require('validaciones.php');
     ?>
 
     <div class="container">

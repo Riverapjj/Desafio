@@ -7,6 +7,17 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
+        <?php
+          if (count($errores) > 0 && isset($_POST)) {
+            echo "<div class='alert alert-danger'><ul>";
+
+            foreach ($errores as $error) {
+              echo "<li>$error</li>";
+            }
+            
+            echo "</div></ul>";
+          }
+        ?>
         <form action="agregar.php" method="POST" class="row needs-validation" novalidate>
           <div class="col-md-12">
             <label for="codigo" class="form-label">Código</label>

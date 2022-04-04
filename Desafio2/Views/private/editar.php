@@ -21,7 +21,7 @@
         $indexXML++;
     }
 
-    file_put_contents('productos.xml', $productos->asXML());
+    file_put_contents('../productos.xml', $productos->asXML());
     
     header('location:privado.php');
 
