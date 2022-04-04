@@ -20,7 +20,7 @@
         return preg_match('/^[762][0-9]{3}-?[0-9]{4}$/', $var);
     }
 
-    function esCodigoEditorial($var) {
-        return preg_match('/^EDI[0-9]{3}$/', $var);
+    function esCodigoCategoria($var) {
+        return preg_match('/^CAT[0-9]{3}$/', $var);
     }
 ?>

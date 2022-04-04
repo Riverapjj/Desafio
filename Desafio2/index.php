@@ -4,7 +4,7 @@
     include_once 'core/config.php';
     include_once 'Controllers/EditorialesController.php';
     include_once 'Controllers/AutoresController.php';
-    include_once 'Controllers/LibrosController.php';
+    include_once 'Controllers/CategoriasController.php';
 
     $router = new Routing();
 
