@@ -5,7 +5,19 @@
     }
 
     function esTexto($var) {
-        return preg_match('/^[a-zA-Z ]+$/', $var);
+        return preg_match('/^[a-zA-Z \u00C0-\u017F\W]+$/', $var);
+    }
+
+    function esTalla($var) {
+        return preg_match('/^[a-zA-Z]{1,4}$/', $var);
+    }
+
+    function esNumero($var) {
+        return preg_match('/^[0-9 ]+$/', $var);
+    }
+
+    function esDecimal($var) {
+        return preg_match('/^[0-9]{1,3}.[0-9]{1,2}$/', $var);
     }
 
     function esMail($var) {
@@ -22,5 +34,9 @@
 
     function esCodigoCategoria($var) {
         return preg_match('/^CAT[0-9]{3}$/', $var);
+    }
+
+    function esCodigoProducto($var) {
+        return preg_match('/^PROD[0-9]{5}$/', $var);
     }
 ?>
