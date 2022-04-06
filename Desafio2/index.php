@@ -6,6 +6,7 @@
     include_once 'Controllers/ProductosController.php';
     include_once 'Controllers/UsuariosController.php';
     include_once 'Controllers/IndexPublicController.php';
+    include_once 'Controllers/RolesController.php';
 
 
     $router = new Routing();

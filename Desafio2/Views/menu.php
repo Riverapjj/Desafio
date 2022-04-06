@@ -33,24 +33,30 @@
                 <li><a href="<?= PATH ?>/Categorias/index">Ver lista de categorías</a></li>
               </ul>
             </li>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" 
-                 role="button" aria-haspopup="true" 
-                 aria-expanded="false">Usuarios<span class="caret"></span></a>
-              <ul class="dropdown-menu">
-                <li><a href="<?= PATH ?>/Usuarios/create">Registrar usuario</a></li>
-                <li><a href="<?= PATH ?>/Usuarios/index">Ver lista de usuarios</a></li>
-              </ul>
-            </li>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" 
-                 role="button" aria-haspopup="true" 
-                 aria-expanded="false">Roles<span class="caret"></span></a>
-              <ul class="dropdown-menu">
-                <li><a href="<?= PATH ?>/Roles/create">Registrar rol</a></li>
-                <li><a href="<?= PATH ?>/Roles/index">Ver lista de roles</a></li>
-              </ul>
-            </li>
+            <?php
+                if($_SESSION['login_data']['codigo_tipo_usuario'] == 1) {
+            ?>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" 
+                  role="button" aria-haspopup="true" 
+                  aria-expanded="false">Usuarios<span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li><a href="<?= PATH ?>/Usuarios/create">Registrar usuario</a></li>
+                  <li><a href="<?= PATH ?>/Usuarios/index">Ver lista de usuarios</a></li>
+                </ul>
+              </li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" 
+                  role="button" aria-haspopup="true" 
+                  aria-expanded="false">Roles<span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li><a href="<?= PATH ?>/Roles/create">Registrar rol</a></li>
+                  <li><a href="<?= PATH ?>/Roles/index">Ver lista de roles</a></li>
+                </ul>
+              </li>
+            <?php
+                }
+            ?>
           </ul>
           <ul class="nav nav-navbar navbar-right">
             <li class="dropdown">

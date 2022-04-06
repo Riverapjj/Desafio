@@ -23,25 +23,17 @@
 
         }
 
-        public function create($categoria = array()) {
+        public function create($rol = array()) {
 
-            $query = "INSERT INTO Categorias(codigo_categoria, nombre_categoria) VALUES(:codigo_categoria, :nombre_categoria)";
+            $query = "INSERT INTO tipo_usuarios(tipo_usuario) VALUES(:tipo_usuario)";
+
+            return $this->set_query($query, $rol);
+        }
+
+        public function update($rol = array()) {
+
+            $query = "UPDATE tipo_usuarios SET tipo_usuario = :tipo_usuario WHERE codigo_tipo_usuario = :codigo_tipo_usuario";
 
             return $this->set_query($query, $categoria);
         }
-
-        public function update($categoria = array()) {
-
-            $query = "UPDATE Categorias SET nombre_categoria = :nombre_categoria WHERE codigo_categoria = :codigo_categoria";
-
-            return $this->set_query($query, $categoria);
-        }
-
-        public function delete($id = '') {
-            $query = "DELETE FROM Categorias WHERE codigo_categoria = :codigo_categoria";
-
-            return $this->set_query($query, [":codigo_categoria"=>$id]);
-        }
-
-
     }
