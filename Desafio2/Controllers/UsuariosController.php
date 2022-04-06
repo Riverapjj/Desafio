@@ -1,14 +1,27 @@
 <?php
 
     require_once 'Model/UsuariosModel.php';
+    require_once 'Model/RolesModel.php';
     require_once 'Controllers/Controller.php';
     require_once 'core/validaciones.php';
 
     class UsuariosController extends Controller {
         private $model;
+        private $rolesModel;
 
         function __construct() {
+            if(!isset($_SESSION['login_data'])) {
+
+                header('location:'.PATH.'/Usuarios/login');
+
+                if($_SESSION['login_data']['codigo_tipo_usuario'] == 3) {
+
+                    header('location:'.PATH.'/IndexPublic/index');
+                }
+            }
+            
             $this->model = new UsuariosModel();
+            $this->rolesModel = new RolesModel();
         }
 
         public function login() {
@@ -72,22 +85,69 @@
         }
 
         public function index() {
-            
+            //var_dump($this->model->get());
+            $viewBag = array();
+            $viewBag['usuarios'] = $this->model->get();
+            $viewBag['roles'] = $this->rolesModel->get();
+            $this->render("index.php", $viewBag);
         }
 
-        public function details() {
-            var_dump($this->model->validateUser('Josue', '123456')[0]);
-            //echo json_encode($this->model->validateUser('Josue', 123456));
+        public function details($id) {
+            //var_dump($this->model->get($id));
+            echo json_encode($this->model->get($id)[0]);
         }
 
         public function create() {
             $viewBag = array();
-            $viewBag['categorias'] = $this->categoriasModel->get();
+            $viewBag['usuarios'] = $this->model->get();
+            $viewBag['roles'] = $this->rolesModel->get();
             $this->render("new.php", $viewBag);
         }
 
         public function add() {
+            $errores = array();
+            $usuario = array();
+        
+            if (isset($_POST['Guardar'])) {
+        
+                extract($_POST);
+        
+                if (!isset($nombre_usuario) || estaVacio($nombre_usuario)) {
+                    array_push($errores, "Debes ingresar el codigo de la categoría");
+                }
+        
+                if (!isset($password) || estaVacio($password)) {
+                    array_push($errores, "Debes ingresar el nombre de categoría");
+                }
 
+                $usuario['codigo_tipo_usuario'] = $codigo_tipo_usuario;
+                $usuario['nombre_usuario'] = $nombre_usuario;
+                $usuario['password'] = $password;
+
+                if (count($errores) > 0) {
+
+                    $viewBag = array();
+                    $viewBag['errores'] = $errores;
+                    $viewBag['usuario'] = $usuario;
+                    $this->render("new.php", $viewBag);
+
+                }else {
+
+                    if ($this->model->create($usuario) > 0) {
+                        
+                        header('location:'.PATH.'/Usuarios/index');
+
+                    }else {
+                        var_dump($usuario);
+                        array_push($errores, "Algo salió mal!!");
+                        $viewBag = array();
+                        $viewBag['errores'] = $errores;
+                        $viewBag['usuario'] = $usuario;
+                        $this->render("new.php", $viewBag);
+
+                    }
+                }
+            }
             
         }
 
@@ -99,89 +159,52 @@
         
                 extract($_POST);
         
-                if (!isset($codigo_producto) || estaVacio($codigo_producto)) {
-                    array_push($errores, "Debes ingresar el codigo de la producto");
-                }else if (!esCodigoProducto($codigo_producto)) {
-                    array_push($errores, "Código de producto no válido");
+                if (!isset($codigo_usuario) || estaVacio($codigo_usuario)) {
+                    array_push($errores, "Debes ingresar el codigo del usuario");
                 }
 
-                if (!isset($codigo_categoria) || estaVacio($codigo_categoria)) {
-                    array_push($errores, "Debes ingresar el codigo de la categoria");
-                }else if (!esCodigoCategoria($codigo_categoria)) {
-                    array_push($errores, "Código de categoria no válido");
+                if (!isset($codigo_tipo_usuario) || estaVacio($codigo_tipo_usuario)) {
+                    array_push($errores, "Debes ingresar el tipo de usuario");
                 }
         
-                if (!isset($nombre_producto) || estaVacio($nombre_producto)) {
-                    array_push($errores, "Debes ingresar el nombre de producto");
-                }else if (!esTexto($nombre_producto)) {
-                    array_push($errores, "Nombre del producto no válido");
+                if (!isset($nombre_usuario) || estaVacio($nombre_usuario)) {
+                    array_push($errores, "Debes ingresar el nombre del usuario");
+                }else if (!esTexto($nombre_usuario)) {
+                    array_push($errores, "Nombre de usuario no válido");
                 }
 
-                if (!isset($descripcion) || estaVacio($descripcion)) {
-                    array_push($errores, "Debes ingresar la descripción de producto");
-                }else if (!esTexto($descripcion)) {
-                    array_push($errores, "Descripción del producto no válido");
+                if (!isset($activo) || estaVacio($activo)) {
+                    array_push($errores, "Debes ingresar el estado del usuario");
                 }
 
-                if (!isset($talla) || estaVacio($talla)) {
-                    array_push($errores, "Debes ingresar la talla de producto");
-                }else if (!esTexto($talla)) {
-                    array_push($errores, "Talla del producto no válido");
-                }
-
-                if (!isset($existencias) || estaVacio($existencias)) {
-                    array_push($errores, "Debes ingresar las existencias de producto");
-                }else if (!esNumero($existencias)) {
-                    array_push($errores, "Existencias del producto no válido");
-                }
-
-                if (!isset($precio) || estaVacio($precio)) {
-                    array_push($errores, "Debes ingresar el precio de producto");
-                }else if (!esDecimal($precio)) {
-                    array_push($errores, "Precio del producto no válido");
-                }
-
-                if (!isset($imagen) || estaVacio($imagen)) {
-                    $imagen = json_encode($this->model->get($codigo_producto)[5]);
-                }
-
-                $producto['codigo_producto'] = $codigo_producto;
-                $producto['codigo_categoria'] = $codigo_categoria;
-                $producto['nombre_producto'] = $nombre_producto;
-                $producto['talla'] = $talla;
-                $producto['descripcion'] = $descripcion;
-                $producto['precio'] = $precio;
-                $producto['imagen'] = $imagen;
-                $producto['existencias'] = $existencias;
+                $usuario['codigo_usuario'] = $codigo_usuario;
+                $usuario['codigo_tipo_usuario'] = $codigo_tipo_usuario;
+                $usuario['nombre_usuario'] = $nombre_usuario;
+                $usuario['activo'] = $activo;
 
                 if (count($errores) > 0) {
 
                     $viewBag = array();
                     $viewBag['errores'] = $errores;
-                    $viewBag['producto'] = $producto;
+                    $viewBag['usuario'] = $usuario;
                     $this->render("index.php", $viewBag);
 
                 }else {
 
-                    if ($this->model->update($producto) > 0) {
+                    if ($this->model->update($usuario) > 0) {
                         
-                        header('location:'.PATH.'/Productos/index');
+                        header('location:'.PATH.'/Usuarios/index');
 
                     }else {
 
-                        array_push($errores, "Ya existe un producto con este código.");
+                        array_push($errores, "Ya existe un usuario con este código.");
                         $viewBag = array();
                         $viewBag['errores'] = $errores;
-                        $viewBag['producto'] = $producto;
+                        $viewBag['usuario'] = $usuario;
                         $this->render("index.php", $viewBag);
 
                     }
                 }
             }
-        }
-
-        public function delete($id) {
-            $this->model->delete($id);
-            $this->index();
         }
     }

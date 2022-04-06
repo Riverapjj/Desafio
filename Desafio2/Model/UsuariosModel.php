@@ -15,18 +15,18 @@
             $query = "";
             if ($id == '') {
                 //Retornar todas las editoriales
-                $query = "SELECT * FROM Productos P
-                INNER JOIN Categorias C ON P.codigo_categoria = C.codigo_categoria";
+                $query = "SELECT * FROM Usuarios U
+                INNER JOIN tipo_usuarios T ON U.codigo_tipo_usuario = T.codigo_tipo_usuario";
 
             return $this->get_query($query);
 
             }else {
                 //Retornar una editorial
-                $query = "SELECT * FROM Productos P
-                INNER JOIN Categorias C ON P.codigo_categoria = C.codigo_categoria
-                WHERE codigo_producto = :codigo_producto";
+                $query = "SELECT * FROM Usuarios U
+                INNER JOIN tipo_usuarios T ON U.codigo_tipo_usuario = T.codigo_tipo_usuario
+                WHERE codigo_usuario = :codigo_usuario";
 
-                return $this->get_query($query, [":codigo_producto"=>$id]);
+                return $this->get_query($query, [":codigo_usuario"=>$id]);
 
             }
 
@@ -46,11 +46,11 @@
             return $this->set_query($query, $usuario);
         }
 
-        public function update($producto = array()) {
+        public function update($usuario = array()) {
 
-            $query = "UPDATE Productos SET nombre_producto = :nombre_producto, codigo_categoria = :codigo_categoria, talla = :talla, descripcion = :descripcion, imagen = :imagen, precio = :precio, existencias = :existencias WHERE codigo_producto = :codigo_producto";
+            $query = "UPDATE Usuarios SET nombre_usuario = :nombre_usuario, codigo_tipo_usuario = :codigo_tipo_usuario, activo = :activo WHERE codigo_usuario = :codigo_usuario";
 
-            return $this->set_query($query, $producto);
+            return $this->set_query($query, $usuario);
         }
 
         public function delete($id = '') {
