@@ -9,9 +9,7 @@
         private $model;
         private $rolesModel;
 
-        function __construct() {
-
-            
+        function __construct() {          
             
             $this->model = new UsuariosModel();
             $this->rolesModel = new RolesModel();
@@ -79,6 +77,16 @@
 
         public function index() {
             //var_dump($this->model->get());
+            if(!isset($_SESSION['login_data'])) {
+
+                header('location:'.PATH.'/Usuarios/login');
+
+                if($_SESSION['login_data']['codigo_tipo_usuario'] == 3) {
+
+                    header('location:'.PATH.'/IndexPublic/index');
+                }
+            }
+            
             $viewBag = array();
             $viewBag['usuarios'] = $this->model->get();
             $viewBag['roles'] = $this->rolesModel->get();

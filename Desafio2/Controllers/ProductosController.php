@@ -112,6 +112,7 @@
                     $viewBag = array();
                     $viewBag['errores'] = $errores;
                     $viewBag['producto'] = $producto;
+                    $viewBag['categorias'] = $this->categoriasModel->get();
                     $this->render("new.php", $viewBag);
 
                 }else {

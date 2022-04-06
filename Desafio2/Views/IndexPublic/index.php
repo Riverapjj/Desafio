@@ -73,9 +73,22 @@
                         <div class="thumbnail">
                             <img src="<?=PATH?>/Views/assets/img/<?=$producto['imagen']?>" alt="...">
                             <div class="caption">
-                                <h3><strong><?=$producto['nombre_producto']?></strong></h3>
+                                <h3><strong><?=$producto['nombre_producto']?> - $<?=$producto['precio']?></strong></h3>
                                 <div class="mt-3 mb-3" style="height: 60px; overflow: auto; margin-botton: 8px"><?=$producto['descripcion']?></div>
-                                <a href="#" class="btn btn-success" role="button">Agregar</a>
+                                
+                                
+                                <?php
+                                    if(isset($_SESSION['login_data'])) {
+                                        if($producto['existencias'] > 0) {
+                                        
+                                ?>
+                                    <a href="#" class="btn btn-success" role="button">Agregar</a>                   
+                                <?php
+                                        }
+                                    }
+                                ?>
+                                
+                                
                             </div>
                         </div>
                     </div>
