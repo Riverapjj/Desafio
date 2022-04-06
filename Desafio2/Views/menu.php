@@ -10,7 +10,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-            <a class="navbar-brand" href="#">Ejemplo MVC</a>
+            <a class="navbar-brand" href="<?= PATH ?>/Productos/index">Desafío #2</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
@@ -18,37 +18,29 @@
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" 
                  role="button" aria-haspopup="true" 
-                 aria-expanded="false">Autores <span class="caret"></span></a>
+                 aria-expanded="false">Productos <span class="caret"></span></a>
               <ul class="dropdown-menu">
-                  <li><a href="#">Registrar autor</a></li>
-                <li><a href="#">Ver lista de autores</a></li>
+                  <li><a href="<?= PATH ?>/Productos/create">Registrar producto</a></li>
+                <li><a href="<?= PATH ?>/Productos/index">Ver lista de productos</a></li>
               </ul>
             </li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" 
                  role="button" aria-haspopup="true" 
-                 aria-expanded="false">Generos<span class="caret"></span></a>
+                 aria-expanded="false">Categorías<span class="caret"></span></a>
               <ul class="dropdown-menu">
-                <li><a href="#">Registrar genero</a></li>
-                <li><a href="#">Ver lista de generos</a></li>
+                <li><a href="<?= PATH ?>/Categorias/create">Registrar categoría</a></li>
+                <li><a href="<?= PATH ?>/Categorias/index">Ver lista de categorías</a></li>
               </ul>
             </li>
+          </ul>
+          <ul class="nav nav-navbar navbar-right">
             <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" 
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" 
                  role="button" aria-haspopup="true" 
-                 aria-expanded="false">Libros<span class="caret"></span></a>
+                 aria-expanded="false"><?=$_SESSION['login_data']['nombre_usuario']?><span class="caret"></span></a>
               <ul class="dropdown-menu">
-                <li><a href="#">Registrar libro</a></li>
-                <li><a href="#">Ver lista de libros</a></li>
-              </ul>
-            </li>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" 
-                 role="button" aria-haspopup="true" 
-                 aria-expanded="false">Editoriales<span class="caret"></span></a>
-              <ul class="dropdown-menu">
-                  <li><a href="#">Registrar editorial</a></li>
-                <li><a href="#">Ver lista de editoriales</a></li>
+                  <li><a href="<?= PATH ?>/Usuarios/logout">Cerrar sesión</a></li>
               </ul>
             </li>
           </ul>

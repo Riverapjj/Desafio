@@ -1,8 +1,6 @@
 <?php
 
     require_once 'Model/CategoriasModel.php';
-    require_once 'Model/EditorialesModel.php';
-    require_once 'Model/AutoresModel.php';
     require_once 'Controllers/Controller.php';
     require_once 'core/validaciones.php';
 
@@ -10,6 +8,17 @@
         private $model;
 
         function __construct() {
+
+            if(!isset($_SESSION['login_data'])) {
+
+                header('location:'.PATH.'/Usuarios/login');
+
+                if($_SESSION['login_data']['codigo_tipo_usuario'] == 3) {
+
+                    header('location:'.PATH.'/IndexPublic/index');
+                }
+            }
+            
             $this->model = new CategoriasModel();
         }
 

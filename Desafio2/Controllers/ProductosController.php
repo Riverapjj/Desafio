@@ -10,6 +10,18 @@
         private $categoriasModel;
 
         function __construct() {
+
+            if(!isset($_SESSION['login_data'])) {
+
+                header('location:'.PATH.'/Usuarios/login');
+
+                if($_SESSION['login_data']['codigo_tipo_usuario'] == 3) {
+
+                    header('location:'.PATH.'/IndexPublic/index');
+                }
+            }
+            
+
             $this->model = new ProductosModel();
             $this->categoriasModel = new CategoriasModel();
         }
