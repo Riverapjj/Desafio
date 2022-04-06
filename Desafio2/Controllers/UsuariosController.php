@@ -11,9 +11,7 @@
 
         function __construct() {
             if(!isset($_SESSION['login_data'])) {
-
-                header('location:'.PATH.'/Usuarios/login');
-
+                return;
                 if($_SESSION['login_data']['codigo_tipo_usuario'] == 3) {
 
                     header('location:'.PATH.'/IndexPublic/index');
