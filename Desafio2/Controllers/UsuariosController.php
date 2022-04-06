@@ -10,13 +10,8 @@
         private $rolesModel;
 
         function __construct() {
-            if(!isset($_SESSION['login_data'])) {
-                return;
-                if($_SESSION['login_data']['codigo_tipo_usuario'] == 3) {
 
-                    header('location:'.PATH.'/IndexPublic/index');
-                }
-            }
+            
             
             $this->model = new UsuariosModel();
             $this->rolesModel = new RolesModel();

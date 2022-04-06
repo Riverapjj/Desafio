@@ -89,12 +89,17 @@
         
                 extract($_POST);
         
+                if (!isset($codigo_tipo_usuario) || estaVacio($codigo_tipo_usuario)) {
+                    array_push($errores, "Debes el codigo tipo de usuario.");
+                }
+
                 if (!isset($tipo_usuario) || estaVacio($tipo_usuario)) {
                     array_push($errores, "Debes ingresar el nombre de categoría");
                 }else if (!esTexto($tipo_usuario)) {
                     array_push($errores, "Nombre de la categoría no válido");
                 }
 
+                $rol['codigo_tipo_usuario'] = $codigo_tipo_usuario;
                 $rol['tipo_usuario'] = $tipo_usuario;
 
                 if (count($errores) > 0) {

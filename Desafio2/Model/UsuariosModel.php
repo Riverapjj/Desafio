@@ -34,7 +34,7 @@
 
         public function create($usuario = array()) {
 
-            $query = "INSERT INTO Usuarios(codigo_tipo_usuario, activo, password, nombre_usuario) VALUES(:codigo_tipo_usuario, 1, :password, :nombre_usuario)";
+            $query = "INSERT INTO Usuarios(codigo_tipo_usuario, activo, password, nombre_usuario) VALUES(:codigo_tipo_usuario, 1, SHA2(:password, 256), :nombre_usuario)";
             
             return $this->set_query($query, $usuario);
         }
@@ -54,9 +54,7 @@
         }
 
         public function delete($id = '') {
-            $query = "DELETE FROM Productos WHERE codigo_producto = :codigo_producto";
 
-            return $this->set_query($query, [":codigo_producto"=>$id]);
         }
 
 

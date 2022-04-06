@@ -34,6 +34,8 @@
 
             $query = "UPDATE tipo_usuarios SET tipo_usuario = :tipo_usuario WHERE codigo_tipo_usuario = :codigo_tipo_usuario";
 
-            return $this->set_query($query, $categoria);
+            return $this->set_query($query, $rol);
         }
+
+        public function delete() {}
     }
